@@ -10,6 +10,14 @@ import { Component } from '@angular/core';
   <h1>{{name}}</h1>
 
   <fieldset>
+    <div [hidden] = "hideAddress">
+      <p [innerText] = "street"></p>
+      <p [innerText] = "city"></p>
+    </div>
+  <button (click) = "addressClick()">Show/Hide Address</button>
+</fieldset>
+
+  <fieldset>
     <!-- <img src={{image}}/> -->
     <!-- <img src="{{image}}"/> -->
     <img [src]="image"/>
@@ -31,9 +39,13 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent  {
-  name = 'Alex Smith';
+  name = 'Jack Linton';
   image = 'favicon.ico';
   color = 'red';
+  street = '4826 Osage Ave';
+  city = 'Philadelphia, PA 19143';
+  region = 'Pennsylvania';
+  hideAddress = false;
 
   clicked() {
     this.color = this.color === 'red' ? 'blue' : 'red';
@@ -41,5 +53,9 @@ export class AppComponent  {
 
   colorChange(color: string) {
     this.color = color;
+  }
+
+  addressClick() {
+    this.hideAddress = !this.hideAddress;
   }
 }
